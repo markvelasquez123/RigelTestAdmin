@@ -11,28 +11,23 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Login/>} /> {/* Login shows first */}
+        <Route path="/home" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/dashboard"
           element={
             <div className="flex">
               <Sidebar />
-              <div className="flex-1">
+              <div className="flex-1 ml-64">
                 <Navbar />
                 <Dashboard />
               </div>
             </div>
           }
         />
-        <Route
-          path="/navbar"
-          element={<Navbar />}
-        />
-        <Route
-          path="/sidebar"
-          element={<Sidebar />}
-        />
+        <Route path="/navbar" element={<Navbar />} />
+        <Route path="/sidebar" element={<Sidebar />} />
       </Routes>
     </Router>
   );
