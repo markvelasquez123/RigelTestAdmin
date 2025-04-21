@@ -15,15 +15,11 @@ const Sidebar = () => {
 
   // Handle logout function
   const handleLogout = () => {
-    // Clear any auth tokens or user data from localStorage if needed
     localStorage.removeItem('authToken');
     localStorage.removeItem('userData');
-    
-    // Redirect to login page
     navigate('/login');
   };
 
-  // Function to create menu items with consistent styling
   const MenuItem = ({ icon, text, onClick, active = false }) => (
     <li className={`rounded-lg hover:bg-blue-100 transition-all duration-200 p-3 ${active ? 'bg-blue-50' : ''}`}>
       <button
@@ -39,16 +35,18 @@ const Sidebar = () => {
   );
 
   return (
-    <div
-      className="fixed inset-y-0 left-0 w-64 bg-white h-full p-6 z-40 shadow-xl rounded-r-2xl border-r border-gray-200"
-    >
+    <div className="fixed inset-y-0 left-0 w-64 bg-white h-full p-6 z-40 shadow-xl rounded-r-2xl border-r border-gray-200">
       {/* Logo/Header */}
       <div className="mb-8 text-center">
-        <h1 className="text-2xl text-blue-900 font-bold">Sample Organization</h1>
+        <img
+          src="https://static.wixstatic.com/media/1f4846_ae30323ddefa4372ae79d28da56bd68a~mv2.jpg/v1/fill/w_228,h_101,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/RIGEL%20LOGO%20FINAL%20-%20BORDER.jpg"
+          alt="Rigel Company Logo"
+          className="mx-auto w-40 h-auto object-contain"
+        />
       </div>
-      
+
       <hr className="border-gray-200 mb-5" />
-      
+
       {/* Navigation */}
       <div className="overflow-y-auto max-h-[calc(100%-180px)]">
         <ul className="space-y-1 font-medium">
@@ -57,29 +55,21 @@ const Sidebar = () => {
             text="Home" 
             onClick={() => navigate('/home')}
           />
-
-          {/* Test Libraries */}
           <MenuItem 
             icon={<FaBook />} 
             text="Test Libraries" 
             onClick={() => navigate('/test-libraries')}
           />
-          
-          {/* Results & Statistics */}
           <MenuItem 
             icon={<FaClipboardCheck />} 
             text="Results & Statistics" 
             onClick={() => navigate('/results-statistics')}
           />
-
-          {/* Data Management */}
           <MenuItem 
             icon={<FaDatabase />} 
             text="Data Management" 
             onClick={() => navigate('/data-management')}
           />
-
-          {/* Question Banks */}
           <MenuItem 
             icon={<FaQuestion />} 
             text="Question Banks" 

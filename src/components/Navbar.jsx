@@ -35,7 +35,7 @@ const Navbar = () => {
     <>
       <nav className="fixed top-0 left-64 right-0 h-16 bg-white px-6 flex items-center justify-between shadow-md z-50 rounded-bl-2xl border-b border-gray-200">
         <div className="flex items-center gap-x-4">
-          <span className="text-blue-900 font-semibold text-xl">Hello Admin</span>
+          <span className="text-blue-900 font-semibold text-xl">Rigel Maritime INC.</span>
         </div>
 
         <div className="flex items-center gap-x-4">
