@@ -12,28 +12,40 @@ const Dashboard = () => {
     }
   }, []);
 
+  const cards = [
+    {
+      title: 'Create a New Test',
+      icon: <FaFileAlt className="w-12 h-12 text-blue-600 mb-4" />,
+    },
+    {
+      title: 'Assigned Test Result',
+      icon: <FaClipboardCheck className="w-12 h-12 text-blue-600 mb-4" />,
+    },
+    {
+      title: 'View Statistics & Overview',
+      icon: <FaChartBar className="w-12 h-12 text-blue-600 mb-4" />,
+    },
+  ];
+
   return (
-    <div className="w-full">
+    <div className="w-full min-h-screen bg-gray-50">
       <Navbar />
-      <div className="mt-20 px-6">
-        <h1 className="text-4xl font-bold text-gray-800 mb-2">Hello {username},</h1>
-        <p className="text-xl text-gray-400 mb-10">What can I do for you today?</p>
+      <div className="mt-24 px-6 sm:px-10">
+        <h1 className="text-4xl font-bold text-blue-900 mb-2">Welcome back, {username} 👋</h1>
+        <p className="text-lg text-gray-500 mb-10">Here's what you can do today:</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="flex flex-col items-center text-center hover:bg-blue-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 cursor-pointer">
-            <FaFileAlt className="w-16 h-16 text-blue-700 mb-4" />
-            <span className="text-lg font-semibold text-blue-900">Create a New Test</span>
-          </div>
-
-          <div className="flex flex-col items-center text-center hover:bg-blue-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 cursor-pointer">
-            <FaClipboardCheck className="w-16 h-16 text-blue-700 mb-4" />
-            <span className="text-lg font-semibold text-blue-900">Assigned Test Result</span>
-          </div>
-
-          <div className="flex flex-col items-center text-center hover:bg-blue-50 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 cursor-pointer">
-            <FaChartBar className="w-16 h-16 text-blue-700 mb-4" />
-            <span className="text-lg font-semibold text-blue-900">View Statistics & Overview</span>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {cards.map((card, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center justify-center text-center bg-white p-6 rounded-2xl shadow-md hover:shadow-xl border hover:border-blue-300 transition-all duration-300 ease-in-out cursor-pointer"
+            >
+              {card.icon}
+              <span className="text-lg font-semibold text-gray-800 group-hover:text-blue-700">
+                {card.title}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

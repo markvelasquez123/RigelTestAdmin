@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
-
+import UserManagement from './pages/Usermanagement';
 function App() {
   return (
     <Router>
@@ -14,6 +14,7 @@ function App() {
         <Route path="/" element={<Login/>} /> {/* Login shows first */}
         <Route path="/home" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/usermanagement" element={<UserManagement />} />
         <Route
           path="/dashboard"
           element={

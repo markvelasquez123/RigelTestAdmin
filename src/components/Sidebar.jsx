@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import {
   FaHome,
   FaBook,
   FaClipboardCheck,
   FaDatabase,
   FaQuestion,
-  FaSignOutAlt
+  FaSignOutAlt,
+  FaChevronDown,
+  FaChevronRight,
+  FaChartBar
 } from 'react-icons/fa';
 
 const Sidebar = () => {
   const navigate = useNavigate();
 
-  // Handle logout function
   const handleLogout = () => {
     localStorage.removeItem('authToken');
     localStorage.removeItem('userData');
     navigate('/login');
   };
+
+  const [isTestLibrariesOpen, setIsTestLibrariesOpen] = useState(false);
+  const [isResultsStatisticsOpen, setIsResultsStatisticsOpen] = useState(false);
+  const [isDataManagementOpen, setIsDataManagementOpen] = useState(false);
+  const [isQuestionBanksOpen, setIsQuestionBanksOpen] = useState(false);
 
   const MenuItem = ({ icon, text, onClick, active = false }) => (
     <li className={`rounded-lg hover:bg-blue-100 transition-all duration-200 p-3 ${active ? 'bg-blue-50' : ''}`}>
@@ -55,26 +61,84 @@ const Sidebar = () => {
             text="Home" 
             onClick={() => navigate('/home')}
           />
-          <MenuItem 
-            icon={<FaBook />} 
-            text="Test Libraries" 
-            onClick={() => navigate('/test-libraries')}
-          />
-          <MenuItem 
-            icon={<FaClipboardCheck />} 
-            text="Results & Statistics" 
-            onClick={() => navigate('/results-statistics')}
-          />
-          <MenuItem 
-            icon={<FaDatabase />} 
-            text="Data Management" 
-            onClick={() => navigate('/data-management')}
-          />
-          <MenuItem 
-            icon={<FaQuestion />} 
-            text="Question Banks" 
-            onClick={() => navigate('/question-banks')}
-          />
+
+          {/* Test Libraries */}
+          <li className="rounded-lg hover:bg-blue-100 transition-all duration-200 p-3">
+            <button
+              onClick={() => setIsTestLibrariesOpen(!isTestLibrariesOpen)}
+              className="flex items-center justify-between w-full text-blue-900 font-medium"
+            >
+              <span className="flex items-center">
+                <FaBook className="w-5 h-5 mr-3 text-blue-700" />
+                Test Libraries
+              </span>
+              {isTestLibrariesOpen ? <FaChevronDown /> : <FaChevronRight />}
+            </button>
+            {isTestLibrariesOpen && (
+              <ul className="pl-8 mt-2 space-y-1">
+                <MenuItem icon={<FaBook />} text="Library A" onClick={() => navigate('/library-a')} />
+                <MenuItem icon={<FaBook />} text="Library B" onClick={() => navigate('/library-b')} />
+              </ul>
+            )}
+          </li>
+
+          {/* Results & Statistics */}
+          <li className="rounded-lg hover:bg-blue-100 transition-all duration-200 p-3">
+            <button
+              onClick={() => setIsResultsStatisticsOpen(!isResultsStatisticsOpen)}
+              className="flex items-center justify-between w-full text-blue-900 font-medium"
+            >
+              <span className="flex items-center">
+                <FaClipboardCheck className="w-5 h-5 mr-3 text-blue-700" />
+                Results & Statistics
+              </span>
+              {isResultsStatisticsOpen ? <FaChevronDown /> : <FaChevronRight />}
+            </button>
+            {isResultsStatisticsOpen && (
+              <ul className="pl-8 mt-2 space-y-1">
+                <MenuItem icon={<FaClipboardCheck />} text="View Results" onClick={() => navigate('/view-results')} />
+                <MenuItem icon={<FaChartBar />} text="Statistics" onClick={() => navigate('/view-statistics')} />
+              </ul>
+            )}
+          </li>
+
+          {/* Data Management */}
+          <li className="rounded-lg hover:bg-blue-100 transition-all duration-200 p-3">
+            <button
+              onClick={() => setIsDataManagementOpen(!isDataManagementOpen)}
+              className="flex items-center justify-between w-full text-blue-900 font-medium"
+            >
+              <span className="flex items-center">
+                <FaDatabase className="w-5 h-5 mr-3 text-blue-700" />
+                Data Management
+              </span>
+              {isDataManagementOpen ? <FaChevronDown /> : <FaChevronRight />}
+            </button>
+            {isDataManagementOpen && (
+              <ul className="pl-8 mt-2 space-y-1">
+                <MenuItem icon={<FaDatabase />} text="Manage Data" onClick={() => navigate('/usermanagement')} />
+              </ul>
+            )}
+          </li>
+
+          {/* Question Banks */}
+          <li className="rounded-lg hover:bg-blue-100 transition-all duration-200 p-3">
+            <button
+              onClick={() => setIsQuestionBanksOpen(!isQuestionBanksOpen)}
+              className="flex items-center justify-between w-full text-blue-900 font-medium"
+            >
+              <span className="flex items-center">
+                <FaQuestion className="w-5 h-5 mr-3 text-blue-700" />
+                Question Banks
+              </span>
+              {isQuestionBanksOpen ? <FaChevronDown /> : <FaChevronRight />}
+            </button>
+            {isQuestionBanksOpen && (
+              <ul className="pl-8 mt-2 space-y-1">
+                <MenuItem icon={<FaQuestion />} text="View Banks" onClick={() => navigate('/view-banks')} />
+              </ul>
+            )}
+          </li>
         </ul>
       </div>
 
@@ -82,11 +146,7 @@ const Sidebar = () => {
       <div className="absolute bottom-6 left-6 right-6">
         <hr className="border-gray-200 mb-4" />
         <div className="list-none">
-          <MenuItem 
-            icon={<FaSignOutAlt />} 
-            text="Logout" 
-            onClick={handleLogout}
-          />
+          <MenuItem icon={<FaSignOutAlt />} text="Logout" onClick={handleLogout} />
         </div>
       </div>
     </div>
